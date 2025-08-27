@@ -1,10 +1,10 @@
 import os
 import shutil
-import time
-import schedule
 
-SOURCE = r"C:\Users\MARIUS-PC\Desktop\python\auto-backup-source"
-DESTINATION = r"C:\Users\MARIUS-PC\Desktop\python\auto-backup folder\backupfolder"
+SOURCE = r"C:\Users\MARIUS-PC\Desktop\python\auto-backup folder\backupfolder\PyAuto2"
+DESTINATION = r"C:\Users\MARIUS-PC\Desktop\python\auto-backup folder"
+
+os.makedirs(DESTINATION, exist_ok=True)
 
 def make_backup():
     existing = os.listdir(DESTINATION)
@@ -18,10 +18,4 @@ def make_backup():
     except Exception as e:
         print("Backup error:", e)
 
-schedule.every().day.at("13:55").do(make_backup)
-
-print("Auto backup starting...")
-
-while True:
-    schedule.run_pending()
-    time.sleep(60)
+make_backup()
